@@ -3,7 +3,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
 import { createConnection } from "typeorm";
-import { User } from "./entity/User";
+import { User } from "./entity/user";
 import { routes } from "./routes/routes";
 
 createConnection()

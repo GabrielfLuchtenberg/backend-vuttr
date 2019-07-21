@@ -1,8 +1,8 @@
 import { Router } from "express";
-import test from "./test";
+import tag from "./tag";
 
 const routes = Router();
 
-routes.use("/t", test);
+routes.use("/tags", tag);
 
 export { routes };

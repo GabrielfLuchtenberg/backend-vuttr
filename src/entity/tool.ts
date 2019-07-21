@@ -5,17 +5,23 @@ import {
   ManyToMany,
   JoinTable
 } from "typeorm";
-import { Tool } from "./Tool";
+import { Tag } from "./tag";
 
 @Entity()
-export class Tag {
+export class Tool {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
-  @ManyToMany(type => Tool)
+  @Column()
+  link: string;
+
+  @Column()
+  description: number;
+
+  @ManyToMany(type => Tag)
   @JoinTable()
-  tools: Tool[];
+  tags: Tag[];
 }
