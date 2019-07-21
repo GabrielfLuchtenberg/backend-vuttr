@@ -1,8 +1,8 @@
 import { Router } from "express";
-import tag from "./tag";
+import tool from "./tool";
 
 const routes = Router();
 
-routes.use("/tags", tag);
+routes.use("/tools", tool);
 
 export { routes };
