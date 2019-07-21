@@ -5,23 +5,19 @@ import {
   ManyToMany,
   JoinTable
 } from "typeorm";
-import { Tag } from "./Tag";
+import { IsNotEmpty } from "class-validator";
+import { Tool } from "./tool";
 
 @Entity()
-export class Tool {
+export class Tag {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  @IsNotEmpty()
+  name: string;
 
-  @Column()
-  link: string;
-
-  @Column()
-  description: number;
-
-  @ManyToMany(type => Tag)
+  @ManyToMany(type => Tool)
   @JoinTable()
-  tags: Tag[];
+  tools: Tool[];
 }
