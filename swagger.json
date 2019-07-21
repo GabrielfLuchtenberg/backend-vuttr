@@ -1,0 +1,139 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger Tools finder",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "gabriel.luchtenberg12@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "tools",
+      "description": "Everything about your tools"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/tools": {
+      "post": {
+        "tags": ["tools"],
+        "summary": "Add a new tool",
+        "description": "",
+        "operationId": "addTool",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Pet object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Tool"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["tools"],
+        "summary": "Find tools",
+        "operationId": "getTools",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Tag used to filter",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tool"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/{toolID}": {
+      "delete": {
+        "tags": ["tools"],
+        "summary": "Deletes a tool",
+        "description": "",
+        "operationId": "deleteTool",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "toolID",
+            "in": "path",
+            "description": "Tool id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Tool": {
+      "type": "object",
+      "required": ["title", "description", "link"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string",
+          "example": "photoshop"
+        },
+        "description": {
+          "type": "string",
+          "example": "tool to edit images"
+        },
+        "link": {
+          "type": "string",
+          "example": "http://adobe.xd"
+        },
+        "tags": {
+          "type": "array",
+          "xml": {
+            "name": "tag",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
