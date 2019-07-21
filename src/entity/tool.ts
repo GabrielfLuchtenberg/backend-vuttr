@@ -1,11 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToMany,
-  JoinTable
-} from "typeorm";
-import { Tag } from "./tag";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { IsNotEmpty } from "class-validator";
 
 @Entity()
 export class Tool {
@@ -13,15 +7,16 @@ export class Tool {
   id: number;
 
   @Column()
+  @IsNotEmpty()
   title: string;
 
   @Column()
+  @IsNotEmpty()
   link: string;
 
   @Column()
-  description: number;
+  description: string;
 
-  @ManyToMany(type => Tag)
-  @JoinTable()
-  tags: Tag[];
+  @Column("simple-array")
+  tags: string[];
 }
