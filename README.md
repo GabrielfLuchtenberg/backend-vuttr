@@ -1,7 +1,11 @@
-# Awesome Project Build with TypeORM
+# Dependencies
 
-Steps to run this project:
+1. docker
+2. docker-compose
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+# How to run the project
+
+3. yarn/npm
+1. Clone the repository
+1. run `docker-compose up`
+1. That's all, the project is running on http://localhost:4000
